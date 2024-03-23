@@ -3,7 +3,7 @@ import Pizza from "./Pizza";
 
 export default function Menu() {
   const pizzas = Object.values(pizzaData);
-  // const pizzas = null;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>

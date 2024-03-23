@@ -12,6 +12,7 @@ export default function PizzaMenu() {
   // TODO: useRef instead of state to prevent reRenders
   const [currentTime, setCurrentTime] = useState(new Date());
 
+  // console.log("rerender");
   const formattedTime = currentTime.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
