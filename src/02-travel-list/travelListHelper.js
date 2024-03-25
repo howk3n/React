@@ -1,13 +1,20 @@
-import { COMPONENT_TYPES, ESSENTIALS } from "./constants";
+import {
+  COMPONENT_TYPES,
+  GENERAL_ESSENTIALS,
+  SEASONAL_ESSENTIALS,
+  SEASON_TYPES,
+} from "./constants";
 
 let keys = [];
 
 export const getInitialItems = (
-  numTravelers = 2,
+  numTravelers,
   numDays,
-  goingOutOfCountry = true
+  goingOutOfCountry,
+  season
 ) => {
-  const list = Object.values(ESSENTIALS)
+  const essentials = getEssentials(season);
+  const list = Object.values(essentials)
     .filter((item) => !item.conditionalToLeavingCountry || goingOutOfCountry)
     .map((item) => ({
       description: item.name,
@@ -44,3 +51,15 @@ export const getStatsText = (numItems, numPackedItems) => {
   }
   return text;
 };
+
+function getEssentials(season) {
+  const seasonalEssentials = !season
+    ? null
+    : season === SEASON_TYPES.OMNI
+    ? {
+        ...SEASONAL_ESSENTIALS[SEASON_TYPES.SUMMER],
+        ...SEASONAL_ESSENTIALS[SEASON_TYPES.WINTER],
+      }
+    : SEASONAL_ESSENTIALS[season];
+  return { ...GENERAL_ESSENTIALS, ...seasonalEssentials };
+}

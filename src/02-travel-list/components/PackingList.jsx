@@ -22,7 +22,6 @@ function PackingList({
 
   const numItems = items.length;
 
-  // TODO
   let sortedItems = items.slice().sort(() => sortInvert);
 
   if (sortBy === SORT_TYPES.DESCRIPTION) {

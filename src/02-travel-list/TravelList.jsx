@@ -1,23 +1,15 @@
 import { useState } from "react";
 import "./travel-list.css";
 import Header from "./components/Header";
-import Form from "./components/Form";
+import AddForm from "./components/AddForm";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import { generateKey, getInitialItems } from "./travelListHelper";
 import { COMPONENT_TYPES } from "./constants";
-
-const numTravelers = 2;
-const numDays = 7;
-const goingOutOfCountry = true;
+import InitialSetupForm from "./components/InitialSetupForm";
 
 function TravelList() {
-  const [items, setItems] = useState(
-    getInitialItems(numTravelers, numDays, goingOutOfCountry).map((item) => ({
-      ...item,
-      packed: false,
-    }))
-  );
+  const [items, setItems] = useState([]);
 
   const numItems = items.length;
   const numPackedItems = items.filter((i) => i.packed).length;
@@ -41,6 +33,17 @@ function TravelList() {
     setItems((it) => it.filter((i) => i.id !== id));
   }
 
+  function setInitialItems(numTravelers, numDays, goingOutOfCountry, season) {
+    setItems(
+      getInitialItems(numTravelers, numDays, goingOutOfCountry, season).map(
+        (item) => ({
+          ...item,
+          packed: false,
+        })
+      )
+    );
+  }
+
   function handleRemoveAllItems() {
     if (!items.length) return;
     const confirmed = window.confirm(
@@ -52,13 +55,17 @@ function TravelList() {
   return (
     <div className="travel-list">
       <Header />
-      <Form onAddItem={handleAddItem} />
-      <PackingList
-        items={items}
-        onToggleItemPacked={handleToggleItemPacked}
-        onRemoveItem={handleRemoveItem}
-        onRemoveAllItems={handleRemoveAllItems}
-      />
+      <AddForm onAddItem={handleAddItem} />
+      {items.length > 0 ? (
+        <PackingList
+          items={items}
+          onToggleItemPacked={handleToggleItemPacked}
+          onRemoveItem={handleRemoveItem}
+          onRemoveAllItems={handleRemoveAllItems}
+        />
+      ) : (
+        <InitialSetupForm submitForm={setInitialItems} />
+      )}
       <Stats numItems={numItems} numPackedItems={numPackedItems} />
     </div>
   );

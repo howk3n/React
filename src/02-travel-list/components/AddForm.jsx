@@ -2,11 +2,11 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { generateKey } from "../travelListHelper";
 
-Form.propTypes = {
+AddForm.propTypes = {
   onAddItem: PropTypes.func,
 };
 
-function Form({ onAddItem }) {
+function AddForm({ onAddItem }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
 
@@ -43,4 +43,4 @@ function Form({ onAddItem }) {
   );
 }
 
-export default Form;
+export default AddForm;
