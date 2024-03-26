@@ -1,11 +1,10 @@
+import { generateKey } from "../utils";
 import {
   COMPONENT_TYPES,
   GENERAL_ESSENTIALS,
   SEASONAL_ESSENTIALS,
   SEASON_TYPES,
 } from "./constants";
-
-let keys = [];
 
 export const getInitialItems = (
   numTravelers,
@@ -22,15 +21,6 @@ export const getInitialItems = (
       id: generateKey(COMPONENT_TYPES.ITEM),
     }));
   return list;
-};
-
-export const generateKey = (componentType) => {
-  const key = componentType + "_" + Math.random().toString(16).slice(2);
-  if (keys.includes(key)) {
-    return generateKey(componentType);
-  }
-  keys.push(key);
-  return key;
 };
 
 export const getStatsText = (numItems, numPackedItems) => {

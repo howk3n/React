@@ -4,9 +4,10 @@ import Header from "./components/Header";
 import AddForm from "./components/AddForm";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
-import { generateKey, getInitialItems } from "./travelListHelper";
 import { COMPONENT_TYPES } from "./constants";
 import InitialSetupForm from "./components/InitialSetupForm";
+import { generateKey } from "../utils";
+import { getInitialItems } from "./travelListHelper";
 
 function TravelList() {
   const [items, setItems] = useState([]);

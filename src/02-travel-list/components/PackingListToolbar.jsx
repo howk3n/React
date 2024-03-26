@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { COMPONENT_TYPES, SORT_DESCRIPTIONS, SORT_TYPES } from "../constants";
-import { generateKey } from "../travelListHelper";
+import { generateKey } from "../../utils";
 
 PackingListToolbar.propTypes = {
   sortBy: PropTypes.string,
