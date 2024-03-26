@@ -1,29 +1,23 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 AccordionItem.propTypes = {
   title: PropTypes.string,
-  text: PropTypes.string,
+  isOpen: PropTypes.bool,
   index: PropTypes.number,
+  onClick: PropTypes.func,
+  children: PropTypes.any,
 };
 
-function AccordionItem({ title, text, index }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleIsOpen() {
-    setIsOpen((o) => !o);
-  }
-  // console.log(index);
+function AccordionItem({ title, isOpen, index, onClick, children }) {
   const indexString = index.toString();
-
   return (
-    <li className={`item ${isOpen ? "open" : ""}`} onClick={toggleIsOpen}>
+    <li className={`item ${isOpen ? "open" : ""}`} onClick={onClick}>
       <p className="number">
         {(indexString.length < 2 ? "0" : "") + indexString}
       </p>
       <p className="title">{title}</p>
       <p className="icon">{isOpen ? "-" : "+"}</p>
-      {isOpen ? <div className="content-box">{text}</div> : ""}
+      {children}
     </li>
   );
 }
