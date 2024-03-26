@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Button from "./Button";
 
 const BUTTONS = {
   PREVIOUS: "Previous",
@@ -22,20 +23,21 @@ function Buttons({ setStep, step, numMessages }) {
       setStep((s) => s + 1);
     }
   }
+
   return (
     <div className="buttons">
-      <button
+      <Button
         className={step > 0 ? "active" : ""}
         onClick={handleClickPrevious}
       >
-        <span>{BUTTONS.PREVIOUS}</span>
-      </button>
-      <button
+        <span>👈</span> {BUTTONS.PREVIOUS}
+      </Button>
+      <Button
         className={step < numMessages - 1 ? "active" : ""}
         onClick={handleClickNext}
       >
-        <span>{BUTTONS.NEXT}</span>
-      </button>
+        {BUTTONS.NEXT} <span>👉</span>
+      </Button>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import "./steps.css";
 import ControlVisible from "./components/ControlVisible";
 import StepBadge from "./components/StepBadge";
 import Buttons from "./components/Buttons";
-import StepMessage from "./components/StepMessage";
+import Message from "./components/Message";
 import { messages } from "./stepsData";
 
 function Steps() {
@@ -36,7 +36,7 @@ function Steps() {
               );
             })}
           </div>
-          <StepMessage numStep={step + 1} message={messages[step]} />
+          <Message stepVal={step + 1}>{messages[step]}</Message>
           <Buttons
             setStep={setStep}
             step={step}
