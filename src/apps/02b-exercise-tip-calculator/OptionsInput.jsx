@@ -4,27 +4,29 @@ import { generateKey } from "../../utils";
 OptionsInput.propTypes = {
   value: PropTypes.number,
   satisfactionOptions: PropTypes.object,
-  handleChange: PropTypes.func,
+  onSetTips: PropTypes.func,
   children: PropTypes.any,
 };
 
-function OptionsInput({ value, satisfactionOptions, handleChange, children }) {
+function OptionsInput({ value, satisfactionOptions, onSetTips, children }) {
   return (
-    <label>
-      {children}
-      <select
-        value={value}
-        onChange={(e) => handleChange(Number(e.target.value))}
-      >
-        {Object.values(satisfactionOptions).map((option) => {
-          return (
-            <Option data={option} key={generateKey("satisfaction-option")}>
-              {option.text} ({option.tipPercentage}%)
-            </Option>
-          );
-        })}
-      </select>
-    </label>
+    <div>
+      <label>
+        {children}
+        <select
+          value={value}
+          onChange={(e) => onSetTips(Number(e.target.value))}
+        >
+          {Object.values(satisfactionOptions).map((option) => {
+            return (
+              <Option data={option} key={generateKey("satisfaction-option")}>
+                {option.text} ({option.tipPercentage}%)
+              </Option>
+            );
+          })}
+        </select>
+      </label>
+    </div>
   );
 }
 

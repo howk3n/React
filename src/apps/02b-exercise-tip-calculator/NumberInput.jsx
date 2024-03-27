@@ -2,19 +2,21 @@ import PropTypes from "prop-types";
 
 NumberInput.propTypes = {
   bill: PropTypes.number,
-  setBill: PropTypes.func,
+  onSetBill: PropTypes.func,
   children: PropTypes.any,
 };
 
-function NumberInput({ bill, setBill, children }) {
+function NumberInput({ bill, onSetBill, children }) {
   function handleChange(e) {
-    setBill(Number(e.target.value));
+    onSetBill(Number(e.target.value));
   }
   return (
-    <label>
-      {children}
-      <input type="text" value={bill} onChange={handleChange} />
-    </label>
+    <div>
+      <label>
+        {children}
+        <input type="text" value={bill} onChange={handleChange} />
+      </label>
+    </div>
   );
 }
 export default NumberInput;

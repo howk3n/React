@@ -19,29 +19,29 @@ function TipCalculator() {
 
   return (
     <div>
-      <NumberInput bill={bill} setBill={setBill}>
+      <NumberInput bill={bill} onSetBill={setBill}>
         How much was the bill?
       </NumberInput>
-      <br />
       <OptionsInput
         value={tips[0]}
         satisfactionOptions={satisfactionOptions}
-        handleChange={(value) => handleSetTips(value, 0)}
+        onSetTips={(value) => handleSetTips(value, 0)}
       >
         How was the food and service?
       </OptionsInput>
-      <br />
       <OptionsInput
         value={tips[1]}
         satisfactionOptions={satisfactionOptions}
-        handleChange={(value) => handleSetTips(value, 1)}
+        onSetTips={(value) => handleSetTips(value, 1)}
       >
         How did your friend like the food and service?
       </OptionsInput>
-      <br />
-      <BillTotal bill={bill} tipPercentage={(tips[0] + tips[1]) / 2} />
-      <br />
-      <button onClick={handleReset}>Reset</button>
+      {bill > 0 && (
+        <>
+          <BillTotal bill={bill} tipPercentage={(tips[0] + tips[1]) / 2} />
+          <button onClick={handleReset}>Reset</button>
+        </>
+      )}
     </div>
   );
 }
