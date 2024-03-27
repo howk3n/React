@@ -34,7 +34,7 @@ function PackingList({
       .slice()
       .sort((a, b) => sortInvert * (Number(b.packed) - Number(a.packed)));
   }
-  console.log(items);
+
   return (
     <div className="list">
       <ul>

@@ -6,7 +6,6 @@ Message.propTypes = {
 };
 
 function Message({ stepVal, children }) {
-  console.log(children);
   return (
     <div className="message">
       <h3>Step {stepVal}:</h3>

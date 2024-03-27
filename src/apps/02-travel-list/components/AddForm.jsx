@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { generateKey } from "../../utils";
+import { generateKey } from "../../../utils";
 
 AddForm.propTypes = {
   onAddItem: PropTypes.func,

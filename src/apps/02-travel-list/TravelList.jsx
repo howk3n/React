@@ -6,7 +6,7 @@ import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import { COMPONENT_TYPES } from "./constants";
 import InitialSetupForm from "./components/InitialSetupForm";
-import { generateKey } from "../utils";
+import { generateKey } from "../../utils";
 import { getInitialItems } from "./travelListHelper";
 
 function TravelList() {

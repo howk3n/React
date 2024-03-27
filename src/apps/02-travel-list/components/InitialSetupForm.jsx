@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SEASON_TYPES } from "../constants";
 import PropTypes from "prop-types";
-import { generateKey } from "../../utils";
+import { generateKey } from "../../../utils";
 
 InitialSetupForm.propTypes = {
   submitForm: PropTypes.func,

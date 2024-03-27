@@ -1,4 +1,5 @@
-import { generateKey } from "../utils";
+import { generateKey } from "../../utils";
+
 import {
   COMPONENT_TYPES,
   GENERAL_ESSENTIALS,

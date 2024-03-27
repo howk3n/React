@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { generateKey } from "../utils";
+import { generateKey } from "../../utils";
 import AccordionItem from "./AccordionItem";
 import "./accordion.css";
 import { faqs } from "./constants";
