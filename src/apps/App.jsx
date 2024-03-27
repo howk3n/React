@@ -9,8 +9,9 @@ function App() {
     <div className="main">
       {/* <PizzaMenu /> */}
       {/* <Steps /> */}
-      <TravelList />
+      {/* <TravelList /> */}
       {/* <Accordion /> */}
+      <TipCalculator />
     </div>
   );
 }
