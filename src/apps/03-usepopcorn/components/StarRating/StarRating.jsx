@@ -67,7 +67,7 @@ export default function StarRating({
               onHover={(val) => setHoveredRating(val ? index : null)}
               color={color}
               size={size}
-              key={generateKey("star")}
+              key={generateKey(`star${index}`, "star")}
             />
           );
         })}

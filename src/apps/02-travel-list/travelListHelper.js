@@ -19,7 +19,7 @@ export const getInitialItems = (
     .map((item) => ({
       description: item.name,
       quantity: item.calcQuant(numTravelers, numDays),
-      id: generateKey(COMPONENT_TYPES.ITEM),
+      id: generateKey(item.name, COMPONENT_TYPES.ITEM),
     }));
   return list;
 };

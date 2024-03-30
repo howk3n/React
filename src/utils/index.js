@@ -1,10 +1,10 @@
-let keys = [];
+import { v5 as uuidv5, v4 as uuidv4 } from "uuid";
 
-export const generateKey = (componentType) => {
-  const key = componentType + "_" + Math.random().toString(16).slice(2);
-  if (keys.includes(key)) {
-    return generateKey(componentType);
+const nameSpaces = {};
+
+export const generateKey = (name, componentType) => {
+  if (!nameSpaces[componentType]) {
+    nameSpaces[componentType] = uuidv4(componentType);
   }
-  keys.push(key);
-  return key;
+  return uuidv5(name, nameSpaces[componentType]);
 };

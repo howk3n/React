@@ -19,7 +19,13 @@ function OptionsInput({ value, satisfactionOptions, onSetTips, children }) {
         >
           {Object.values(satisfactionOptions).map((option) => {
             return (
-              <Option data={option} key={generateKey("satisfaction-option")}>
+              <Option
+                data={option}
+                key={generateKey(
+                  option.text + option.tipPercentage,
+                  "satisfaction-option"
+                )}
+              >
                 {option.text} ({option.tipPercentage}%)
               </Option>
             );

@@ -30,7 +30,10 @@ function PackingListToolbar({
     <div className="actions">
       <select value={sortBy} onChange={handleSortBy}>
         {Object.values(SORT_TYPES).map((sortType) => (
-          <option value={sortType} key={generateKey(COMPONENT_TYPES.SORT)}>
+          <option
+            value={sortType}
+            key={generateKey(sortType, COMPONENT_TYPES.SORT)}
+          >
             {SORT_DESCRIPTIONS[sortType]}
           </option>
         ))}

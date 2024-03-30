@@ -27,7 +27,10 @@ function AddForm({ onAddItem }) {
         onChange={(e) => setQuantity(Number(e.target.value))}
       >
         {Array.from({ length: 20 }, (_, i) => i + 1).map((i) => (
-          <option value={i} key={generateKey(`selectNumOption_${i}`)}>
+          <option
+            value={i}
+            key={generateKey(`selectNumOption${i}`, "selectQuantity")}
+          >
             {i}
           </option>
         ))}

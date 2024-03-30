@@ -18,7 +18,11 @@ function TravelList() {
   function handleAddItem(item) {
     setItems((it) => [
       ...it,
-      { ...item, id: generateKey(COMPONENT_TYPES.ITEM), packed: false },
+      {
+        ...item,
+        id: generateKey(item.name, COMPONENT_TYPES.ITEM),
+        packed: false,
+      },
     ]);
   }
 

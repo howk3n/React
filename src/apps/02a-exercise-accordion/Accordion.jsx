@@ -15,7 +15,7 @@ function Accordion() {
     <div className="accordion-container">
       <ul className="accordion">
         {faqs.map(({ title, text }, i) => {
-          const id = generateKey("accordion-text");
+          const id = generateKey(title + text, "accordion-text");
           const isOpen = i === openItemIndex;
           return (
             <AccordionItem

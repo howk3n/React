@@ -32,7 +32,7 @@ function InitialSetupForm({ submitForm }) {
         <label>Season:</label>
         <select value={season} onChange={(e) => setSeason(e.target.value)}>
           {Object.values(SEASON_TYPES).map((s) => (
-            <option value={s} key={generateKey(`season_${s}`)}>
+            <option value={s} key={generateKey(s, "seasonTypes")}>
               {s}
             </option>
           ))}
@@ -46,7 +46,10 @@ function InitialSetupForm({ submitForm }) {
             //   placeholder="Number of days"
           >
             {Array.from({ length: 20 }, (_, i) => i + 1).map((i) => (
-              <option value={i} key={generateKey(`selectNumDaysOption_${i}`)}>
+              <option
+                value={i}
+                key={generateKey(`selectNumDaysOption${i}`, "numdays")}
+              >
                 {i}
               </option>
             ))}
@@ -62,7 +65,10 @@ function InitialSetupForm({ submitForm }) {
             {Array.from({ length: 20 }, (_, i) => i + 1).map((i) => (
               <option
                 value={i}
-                key={generateKey(`selectNumTravelersOption_${i}`)}
+                key={generateKey(
+                  `selectNumTravelersOption${i}`,
+                  "numTravelers"
+                )}
               >
                 {i}
               </option>
@@ -78,13 +84,19 @@ function InitialSetupForm({ submitForm }) {
           >
             <option
               value={true}
-              key={generateKey(`selectGoingAbroadOption_true`)}
+              key={generateKey(
+                `selectGoingAbroadOptiontrue`,
+                "selectGoingAbroad"
+              )}
             >
               Yes
             </option>
             <option
               value={false}
-              key={generateKey(`selectGoingAbroadOption_false`)}
+              key={generateKey(
+                `selectGoingAbroadOptionfalse`,
+                "selectGoingAbroad"
+              )}
             >
               No
             </option>
