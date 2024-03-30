@@ -4,6 +4,7 @@ import TravelList from "./02-travel-list/TravelList";
 import Accordion from "./02a-exercise-accordion/Accordion";
 import TipCalculator from "./02b-exercise-tip-calculator/TipCalculator";
 import EatSplit from "./02c-eat-n-split/EatSplit";
+import UsePopcorn from "./03-usepopcorn/components/UsePopcorn";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       {/* <TravelList /> */}
       {/* <Accordion /> */}
       {/* <TipCalculator /> */}
-      <EatSplit />
+      {/* <EatSplit /> */}
+      <UsePopcorn />
     </div>
   );
 }
