@@ -20,7 +20,7 @@ function EatSplit() {
   }
 
   function handleAddFriend(name, image) {
-    const newFriendID = generateKey("friend");
+    const newFriendID = generateKey(name, "friend");
     setFriendList((fl) => [
       ...fl,
       { name, image, balance: 0, id: newFriendID },
@@ -65,6 +65,8 @@ function EatSplit() {
           <FormSplitBill
             friend={selectedFriend}
             onSplitBill={handleSplitBill}
+            // changing the key makes sure React rerenders component instance if we change selectedFriend
+            key={generateKey(selectedFriendID, "splitbill")}
           />
         )}
       </div>
