@@ -29,7 +29,7 @@ export default function StarRating({
   size = 30,
   messages = [],
   initialRating = 0,
-  onSetRating,
+  onSetRating = () => {},
 }) {
   const [curRating, setCurRating] = useState(initialRating);
   const [hoveredRating, setHoveredRating] = useState(null);

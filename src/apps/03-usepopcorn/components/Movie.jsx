@@ -1,32 +1,33 @@
 import PropTypes from "prop-types";
 import IconTextParagraph from "./IconTextParagraph";
-import MovieDetails from "./MovieDetails";
+import MovieStats from "./MovieStats";
 
 Movie.propTypes = {
   data: PropTypes.object,
+  onSelect: PropTypes.func,
 };
 
-export default function Movie({ data }) {
-  const { Poster, Title, Year, userRating, imdbRating, runtime } = data;
+export default function Movie({ data, onSelect }) {
+  const { Poster, Title, Year, userRating, imdbRating, Runtime } = data;
+
+  function handleSelect() {
+    onSelect();
+  }
 
   return (
-    <li>
+    <li onClick={handleSelect}>
       <img src={Poster} alt={`${Title} poster`} />
       <h3>{Title}</h3>
       <div>
-        {userRating && imdbRating && runtime ? (
-          <MovieDetails
+        {imdbRating && Runtime ? (
+          <MovieStats
             imdbRating={imdbRating}
             userRating={userRating}
-            runtime={runtime}
+            runtime={Runtime}
           />
         ) : (
           <IconTextParagraph icon={"🗓"}>{Year}</IconTextParagraph>
         )}
-        {/* <StarRating
-          maxRating={5}
-          messages={["Terrible", "Bad", "Okay", "Great", "Masterpiece"]}
-        /> */}
       </div>
     </li>
   );

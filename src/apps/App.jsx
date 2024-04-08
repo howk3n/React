@@ -14,8 +14,8 @@ function App() {
       {/* <TravelList /> */}
       {/* <Accordion /> */}
       {/* <TipCalculator /> */}
-      <EatSplit />
-      {/* <UsePopcorn /> */}
+      {/* <EatSplit /> */}
+      <UsePopcorn />
     </div>
   );
 }

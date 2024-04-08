@@ -3,13 +3,23 @@ import Movie from "./Movie";
 
 MoviesList.propTypes = {
   movies: PropTypes.array,
+  onSelectMovie: PropTypes.func,
+  className: PropTypes.string,
 };
 
-export default function MoviesList({ movies }) {
+export default function MoviesList({
+  movies,
+  onSelectMovie = () => {},
+  className = "",
+}) {
   return (
-    <ul className="list">
+    <ul className={`list ` + className}>
       {movies?.map((movie) => (
-        <Movie data={movie} key={movie.imdbID}></Movie>
+        <Movie
+          data={movie}
+          onSelect={() => onSelectMovie(movie.imdbID)}
+          key={movie.imdbID}
+        ></Movie>
       ))}
     </ul>
   );
