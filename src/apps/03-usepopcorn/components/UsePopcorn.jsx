@@ -58,30 +58,51 @@ export default function UsePopcorn() {
     setSelectedMovieId(null);
   }
 
-  let movieBoxContent = (
-    <MoviesList
-      movies={movies}
-      onSelectMovie={handleSelectMovie}
-      className="list-movies"
-    />
-  );
-
-  if (error) {
-    movieBoxContent = <ErrorMessage message={error} />;
-  } else if (isLoading) {
-    movieBoxContent = <Loader />;
+  function handleAddWatchedMovie(movie) {
+    setWatched((w) => [...w, movie]);
   }
+
+  function handleRemoveWatchedMovie(id) {
+    setWatched((w) => w.filter((mov) => mov.imdbID !== id));
+  }
+
+  function handleUpdateWatchedMovie(id, data) {
+    setWatched((w) =>
+      w.map((m) => (m.imdbID === id ? { ...Object.assign(m, data) } : m))
+    );
+  }
+
+  const getMovieBoxContent = () =>
+    error ? (
+      <ErrorMessage message={error} />
+    ) : isLoading ? (
+      <Loader />
+    ) : (
+      <MoviesList
+        movies={movies}
+        onSelectMovie={handleSelectMovie}
+        className="list-movies"
+      />
+    );
 
   return (
     <div className="use-popcorn-container">
       <NavBar query={query} onSetQuery={setQuery} numResults={movies.length} />
       <Main>
-        <CollapsibleBox>{movieBoxContent}</CollapsibleBox>
+        <CollapsibleBox>{getMovieBoxContent()}</CollapsibleBox>
         <CollapsibleBox>
           {selectedMovieId ? (
             <MovieDetails
               movieId={selectedMovieId}
+              isWatched={!!watched?.some((w) => w.imdbID === selectedMovieId)}
+              rating={
+                watched?.find((w) => w.imdbID === selectedMovieId)
+                  ?.userRating || 0
+              }
               onClose={handleDeselectMovie}
+              onAddWatchedMovie={handleAddWatchedMovie}
+              onRemoveWatchedMovie={handleRemoveWatchedMovie}
+              onUpdateWatchedMovie={handleUpdateWatchedMovie}
               key={selectedMovieId}
             />
           ) : (

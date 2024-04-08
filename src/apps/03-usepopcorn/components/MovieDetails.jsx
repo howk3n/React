@@ -1,17 +1,30 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import StarRating from "./StarRating/StarRating";
 import { OMDB_KEY } from "../constants";
 import Loader from "./Loader";
 
 MovieDetails.propTypes = {
   movieId: PropTypes.string,
+  isWatched: PropTypes.bool,
+  rating: PropTypes.number,
   onClose: PropTypes.func,
+  onAddWatchedMovie: PropTypes.func,
+  onRemoveWatchedMovie: PropTypes.func,
+  onUpdateWatchedMovie: PropTypes.func,
 };
 
-function MovieDetails({ movieId, onClose }) {
+function MovieDetails({
+  movieId,
+  isWatched,
+  rating,
+  onClose,
+  onAddWatchedMovie,
+  onRemoveWatchedMovie,
+  onUpdateWatchedMovie,
+}) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
   const {
     Title: title,
     Year: year,
@@ -23,6 +36,7 @@ function MovieDetails({ movieId, onClose }) {
     Actors: actors,
     Director: director,
     Genre: genre,
+    userRating,
   } = movie;
 
   useEffect(() => {
@@ -37,6 +51,39 @@ function MovieDetails({ movieId, onClose }) {
     }
     getMovieDetails();
   }, [movieId]);
+
+  function handleAddRemoveWatchedMovie() {
+    if (isWatched) {
+      onRemoveWatchedMovie(movieId);
+    } else {
+      const newMovie = restructureMovie(movie);
+      onAddWatchedMovie(newMovie);
+    }
+    onClose();
+  }
+
+  function handleSetRating(rating) {
+    if (isWatched) {
+      onUpdateWatchedMovie(movie.imdbID, { userRating: rating });
+    } else {
+      setMovie((m) => ({ ...m, userRating: rating }));
+    }
+  }
+
+  function restructureMovie(mov) {
+    return {
+      ...mov,
+      imdbRating: Number(imdbRating),
+      title,
+      year,
+      poster,
+      Runtime:
+        typeof runtime === "string"
+          ? Number(runtime.split(" ").at(0))
+          : runtime,
+      userRating: userRating || 0,
+    };
+  }
 
   return (
     <div className="details">
@@ -62,6 +109,16 @@ function MovieDetails({ movieId, onClose }) {
             </div>
           </header>
           <section>
+            <div className="rating">
+              <StarRating
+                maxRating={10}
+                onSetRating={handleSetRating}
+                initialRating={rating}
+              />
+              <button className="btn-add" onClick={handleAddRemoveWatchedMovie}>
+                {isWatched ? "Remove Movie" : "Add movie"}
+              </button>
+            </div>
             <p>
               <em>{plot}</em>
             </p>
