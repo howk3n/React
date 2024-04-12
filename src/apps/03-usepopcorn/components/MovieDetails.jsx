@@ -17,7 +17,7 @@ MovieDetails.propTypes = {
 function MovieDetails({
   movieId,
   isWatched,
-  rating,
+  rating: initialRating,
   onClose,
   onAddWatchedMovie,
   onRemoveWatchedMovie,
@@ -25,6 +25,7 @@ function MovieDetails({
 }) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [rating, setRating] = useState(initialRating);
   const {
     Title: title,
     Year: year,
@@ -62,11 +63,12 @@ function MovieDetails({
     onClose();
   }
 
-  function handleSetRating(rating) {
+  function handleSetRating(newRating) {
     if (isWatched) {
-      onUpdateWatchedMovie(movie.imdbID, { userRating: rating });
+      onUpdateWatchedMovie(movie.imdbID, { userRating: newRating });
     } else {
-      setMovie((m) => ({ ...m, userRating: rating }));
+      setMovie((m) => ({ ...m, userRating: newRating }));
+      setRating(newRating);
     }
   }
 
@@ -115,9 +117,14 @@ function MovieDetails({
                 onSetRating={handleSetRating}
                 initialRating={rating}
               />
-              <button className="btn-add" onClick={handleAddRemoveWatchedMovie}>
-                {isWatched ? "Remove Movie" : "Add movie"}
-              </button>
+              {rating > 0 && (
+                <button
+                  className="btn-add"
+                  onClick={handleAddRemoveWatchedMovie}
+                >
+                  {isWatched ? "Remove Movie" : "Add movie"}
+                </button>
+              )}
             </div>
             <p>
               <em>{plot}</em>

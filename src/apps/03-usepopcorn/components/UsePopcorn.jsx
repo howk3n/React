@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../use-popcorn.css";
 import CollapsibleBox from "./CollapsibleBox";
-import MoviesList from "./MoviesList";
+import { NonWatchedMoviesList, WatchedMoviesList } from "./MoviesList";
 import Summary from "./Summary";
 import Main from "./Main";
 import { OMDB_KEY } from "../constants";
@@ -78,7 +78,7 @@ export default function UsePopcorn() {
     ) : isLoading ? (
       <Loader />
     ) : (
-      <MoviesList
+      <NonWatchedMoviesList
         movies={movies}
         onSelectMovie={handleSelectMovie}
         className="list-movies"
@@ -96,8 +96,8 @@ export default function UsePopcorn() {
               movieId={selectedMovieId}
               isWatched={!!watched?.some((w) => w.imdbID === selectedMovieId)}
               rating={
-                watched?.find((w) => w.imdbID === selectedMovieId)
-                  ?.userRating || 0
+                watched.find((w) => w.imdbID === selectedMovieId)?.userRating ||
+                0
               }
               onClose={handleDeselectMovie}
               onAddWatchedMovie={handleAddWatchedMovie}
@@ -108,7 +108,10 @@ export default function UsePopcorn() {
           ) : (
             <>
               <Summary watched={watched}>Movies you watched</Summary>
-              <MoviesList movies={watched} />
+              <WatchedMoviesList
+                movies={watched}
+                onRemoveWatchedMovie={handleRemoveWatchedMovie}
+              />
             </>
           )}
         </CollapsibleBox>
