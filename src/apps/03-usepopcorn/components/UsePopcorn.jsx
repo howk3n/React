@@ -26,20 +26,6 @@ export default function UsePopcorn({ setAppTitle }) {
   const movieTitle = selectedMovie?.Title;
 
   useEffect(() => {
-    if (!movieTitle) return;
-    setAppTitle(`${movieTitle} | Use Popcorn`);
-    // clean up effect (closure)
-    return function () {
-      setAppTitle("Use Popcorn");
-      // console.log(`Cleanup effect for title ${movieTitle}`);
-    };
-  }, [setAppTitle, movieTitle]);
-  // Not using clean up effect
-  // useEffect(() => {
-  //   setAppTitle(`${movieTitle ? movieTitle + " | " : ""}Use Popcorn `);
-  // }, [setAppTitle, movieTitle]);
-
-  useEffect(() => {
     const controller = new AbortController();
     async function fetchMovies() {
       try {
@@ -60,7 +46,7 @@ export default function UsePopcorn({ setAppTitle }) {
         setError("");
       } catch (err) {
         if (err.name !== "AbortError") {
-          console.error(err.message);
+          console.log(err.message);
           setError(err.message);
         }
       } finally {
@@ -79,6 +65,33 @@ export default function UsePopcorn({ setAppTitle }) {
       controller.abort();
     };
   }, [query]);
+
+  useEffect(() => {
+    if (!movieTitle) return;
+    setAppTitle(`${movieTitle} | Use Popcorn`);
+    // clean up effect (closure)
+    return function () {
+      setAppTitle("Use Popcorn");
+      // console.log(`Cleanup effect for title ${movieTitle}`);
+    };
+  }, [setAppTitle, movieTitle]);
+  // Not using clean up effect
+  // useEffect(() => {
+  //   setAppTitle(`${movieTitle ? movieTitle + " | " : ""}Use Popcorn `);
+  // }, [setAppTitle, movieTitle]);
+
+  useEffect(() => {
+    function callBack(e) {
+      if (e.code === "Escape") {
+        handleDeselectMovie();
+      }
+    }
+    document.addEventListener("keydown", callBack);
+
+    return function () {
+      document.removeEventListener("keydown", callBack);
+    };
+  }, []);
 
   function handleSelectMovie(movie) {
     setSelectedMovie((curr) => (curr?.imdbID !== movie.imdbID ? movie : null));
