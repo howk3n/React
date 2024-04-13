@@ -19,7 +19,7 @@ function MoviesList({
       {movies?.map((movie) => (
         <Movie
           data={movie}
-          onSelect={() => onSelectMovie(movie.imdbID)}
+          onSelect={() => onSelectMovie(movie)}
           onRemoveWatchedMovie={onRemoveWatchedMovie}
           key={movie.imdbID}
         ></Movie>

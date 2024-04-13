@@ -1,4 +1,5 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import "./travel-list.css";
 import Header from "./components/Header";
 import AddForm from "./components/AddForm";
@@ -6,21 +7,28 @@ import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import { COMPONENT_TYPES } from "./constants";
 import InitialSetupForm from "./components/InitialSetupForm";
-import { generateKey } from "../../utils";
 import { getInitialItems } from "./travelListHelper";
 
-function TravelList() {
+TravelList.propTypes = {
+  setAppTitle: PropTypes.func,
+};
+
+function TravelList({ setAppTitle }) {
   const [items, setItems] = useState([]);
 
   const numItems = items.length;
   const numPackedItems = items.filter((i) => i.packed).length;
+
+  useEffect(() => {
+    setAppTitle("Travel List");
+  }, [setAppTitle]);
 
   function handleAddItem(item) {
     setItems((it) => [
       ...it,
       {
         ...item,
-        id: generateKey(item.name, COMPONENT_TYPES.ITEM),
+        id: (item.name, COMPONENT_TYPES.ITEM),
         packed: false,
       },
     ]);

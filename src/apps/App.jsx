@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import PizzaMenu from "./00-pizza/PizzaMenu";
 import Steps from "./01-steps/Steps";
 import TravelList from "./02-travel-list/TravelList";
@@ -7,15 +8,22 @@ import EatSplit from "./02c-eat-n-split/EatSplit";
 import UsePopcorn from "./03-usepopcorn/components/UsePopcorn";
 
 function App() {
+  const [appTitle, setAppTitle] = useState("My React Workshop");
+  useEffect(
+    function () {
+      document.title = appTitle;
+    },
+    [appTitle]
+  );
   return (
     <div className="main">
-      {/* <PizzaMenu /> */}
-      {/* <Steps /> */}
-      {/* <TravelList /> */}
+      {/* <PizzaMenu setAppTitle={setAppTitle} /> */}
+      {/* <Steps setAppTitle={setAppTitle} /> */}
+      {/* <TravelList setAppTitle={setAppTitle} /> */}
       {/* <Accordion /> */}
       {/* <TipCalculator /> */}
-      {/* <EatSplit /> */}
-      <UsePopcorn />
+      {/* <EatSplit setAppTitle={setAppTitle} /> */}
+      <UsePopcorn setAppTitle={setAppTitle} />
     </div>
   );
 }

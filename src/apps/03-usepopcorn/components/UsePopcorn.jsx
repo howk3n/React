@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import "../use-popcorn.css";
 import CollapsibleBox from "./CollapsibleBox";
@@ -10,13 +11,33 @@ import ErrorMessage from "./ErrorMessage";
 import NavBar from "./NavBar";
 import MovieDetails from "./MovieDetails";
 
-export default function UsePopcorn() {
+UsePopcorn.propTypes = {
+  setAppTitle: PropTypes.func,
+};
+
+export default function UsePopcorn({ setAppTitle }) {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [selectedMovieId, setSelectedMovieId] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const selectedMovieId = selectedMovie?.imdbID;
+  const movieTitle = selectedMovie?.Title;
+
+  useEffect(() => {
+    if (!movieTitle) return;
+    setAppTitle(`${movieTitle} | Use Popcorn`);
+    // clean up effect (closure)
+    return function () {
+      setAppTitle("Use Popcorn");
+      // console.log(`Cleanup effect for title ${movieTitle}`);
+    };
+  }, [setAppTitle, movieTitle]);
+  // Not using clean up effect
+  // useEffect(() => {
+  //   setAppTitle(`${movieTitle ? movieTitle + " | " : ""}Use Popcorn `);
+  // }, [setAppTitle, movieTitle]);
 
   useEffect(() => {
     async function fetchMovies() {
@@ -50,12 +71,12 @@ export default function UsePopcorn() {
     fetchMovies();
   }, [query]);
 
-  function handleSelectMovie(key) {
-    setSelectedMovieId((id) => (id === key ? null : key));
+  function handleSelectMovie(movie) {
+    setSelectedMovie((curr) => (curr?.imdbID !== movie.imdbID ? movie : null));
   }
 
   function handleDeselectMovie() {
-    setSelectedMovieId(null);
+    setSelectedMovie(null);
   }
 
   function handleAddWatchedMovie(movie) {

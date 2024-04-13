@@ -1,4 +1,5 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import Button from "./components/Button";
 import FormAddFriend from "./components/FormAddFriend";
 import FormSplitBill from "./components/FormSplitBill";
@@ -7,12 +8,20 @@ import "./eatsplit.css";
 import { initialFriends } from "./constants";
 import { generateKey } from "../../utils";
 
-function EatSplit() {
+EatSplit.propTypes = {
+  setAppTitle: PropTypes.func,
+};
+
+function EatSplit({ setAppTitle }) {
   const [showAddFriend, setShowAddFriend] = useState(false);
   const [friendList, setFriendList] = useState(initialFriends);
   const [selectedFriendID, setSelectedFriendID] = useState(null);
 
   const selectedFriend = friendList.find((fr) => fr.id === selectedFriendID);
+
+  useEffect(() => {
+    setAppTitle("Eat 'n Split");
+  }, [setAppTitle]);
 
   function handleShowAddFriend() {
     setShowAddFriend((show) => !show);
