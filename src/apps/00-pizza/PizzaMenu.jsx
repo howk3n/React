@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { pizzaData } from "./pizzaData";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -15,30 +15,35 @@ PizzaMenu.propTypes = {
 };
 
 export default function PizzaMenu({ setAppTitle }) {
-  // TODO: useRef instead of state to prevent reRenders
-  const [currentTime, setCurrentTime] = useState(new Date());
-
   // console.log("rerender");
+  const time = useRef(new Date());
+  const [currentTime, setCurrentTime] = useState(time.current);
+
   const formattedTime = currentTime.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
   });
 
-  function getIsOpen(time) {
-    return time >= openHour && time < closeHour;
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => setCurrentTime(new Date()), 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
   useEffect(() => {
     setAppTitle(PAGE_TITLE);
   }, [setAppTitle]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      time.current = new Date();
+      if (time.current.getMinutes() !== currentTime.getMinutes()) {
+        setCurrentTime(time.current);
+      }
+    }, 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [currentTime]);
+
+  function getIsOpen(time) {
+    return time >= openHour && time < closeHour;
+  }
 
   return (
     <div className="container">
