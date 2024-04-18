@@ -12,7 +12,7 @@ export default function NavBar({ query, onSetQuery, numResults }) {
   return (
     <nav className="nav-bar">
       <Logo icon={"🍿"}>usePopcorn</Logo>
-      <Search query={query} handleSetQuery={onSetQuery} />
+      <Search query={query} setQuery={onSetQuery} />
       <NumResults>{numResults}</NumResults>
     </nav>
   );

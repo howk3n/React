@@ -5,11 +5,13 @@ import CollapsibleBox from "./CollapsibleBox";
 import { NonWatchedMoviesList, WatchedMoviesList } from "./MoviesList";
 import Summary from "./Summary";
 import Main from "./Main";
-import { OMDB_KEY } from "../constants";
 import Loader from "./Loader";
 import ErrorMessage from "./ErrorMessage";
 import NavBar from "./NavBar";
 import MovieDetails from "./MovieDetails";
+import { useMovies } from "../hooks/useMovies";
+import { useLocalStorageState } from "../../../globalHooks/useLocalStorageState";
+import { useKeyEvent } from "../../../globalHooks/useKeyEvent";
 
 UsePopcorn.propTypes = {
   setAppTitle: PropTypes.func,
@@ -17,54 +19,13 @@ UsePopcorn.propTypes = {
 
 export default function UsePopcorn({ setAppTitle }) {
   const [query, setQuery] = useState("");
-  const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const { movies, isLoading, error } = useMovies(query);
+  const [watched, setWatched] = useLocalStorageState([], "watched");
   const [selectedMovie, setSelectedMovie] = useState(null);
   const selectedMovieId = selectedMovie?.imdbID;
   const movieTitle = selectedMovie?.Title;
 
-  useEffect(() => {
-    const controller = new AbortController();
-    async function fetchMovies() {
-      try {
-        setIsLoading(true);
-        setError("");
-        const res = await fetch(
-          `https://www.omdbapi.com/?apikey=${OMDB_KEY}&s=${query}}`,
-          { signal: controller.signal }
-        );
-        if (!res.ok)
-          throw new Error(
-            "Something went wrong with fetching movies from omdbapi"
-          );
-        const data = await res.json();
-        if (data.Response === "False") throw new Error("No movies found");
-
-        setMovies(data.Search);
-        setError("");
-      } catch (err) {
-        if (err.name !== "AbortError") {
-          console.log(err.message);
-          setError(err.message);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    if (query.length < 3) {
-      setMovies([]);
-      setError("");
-      return;
-    }
-    fetchMovies();
-
-    return function () {
-      controller.abort();
-    };
-  }, [query]);
+  useKeyEvent("Escape", handleDeselectMovie);
 
   useEffect(() => {
     if (!movieTitle) return;
@@ -75,23 +36,6 @@ export default function UsePopcorn({ setAppTitle }) {
       // console.log(`Cleanup effect for title ${movieTitle}`);
     };
   }, [setAppTitle, movieTitle]);
-  // Not using clean up effect
-  // useEffect(() => {
-  //   setAppTitle(`${movieTitle ? movieTitle + " | " : ""}Use Popcorn `);
-  // }, [setAppTitle, movieTitle]);
-
-  useEffect(() => {
-    function callBack(e) {
-      if (e.code === "Escape") {
-        handleDeselectMovie();
-      }
-    }
-    document.addEventListener("keydown", callBack);
-
-    return function () {
-      document.removeEventListener("keydown", callBack);
-    };
-  }, []);
 
   function handleSelectMovie(movie) {
     setSelectedMovie((curr) => (curr?.imdbID !== movie.imdbID ? movie : null));

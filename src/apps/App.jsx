@@ -24,8 +24,8 @@ function App() {
       {/* <Accordion /> */}
       {/* <TipCalculator /> */}
       {/* <EatSplit setAppTitle={setAppTitle} /> */}
-      {/* <UsePopcorn setAppTitle={setAppTitle} /> */}
-      <CurrencyConverter setAppTitle={setAppTitle} />
+      <UsePopcorn setAppTitle={setAppTitle} />
+      {/* <CurrencyConverter setAppTitle={setAppTitle} /> */}
     </div>
   );
 }
