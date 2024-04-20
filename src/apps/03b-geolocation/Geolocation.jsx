@@ -1,6 +1,5 @@
-// `https://api.frankfurter.app/latest?amount=100&from=EUR&to=USD`
 import PropTypes from "prop-types";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 function useGeolocation() {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +31,7 @@ Geolocation.propTypes = {
   setAppTitle: PropTypes.func,
 };
 
-export default function Geolocation() {
+export default function Geolocation({ setAppTitle }) {
   const [countClicks, setCountClicks] = useState(0);
   const {
     isLoading,
@@ -40,6 +39,10 @@ export default function Geolocation() {
     error,
     getPosition,
   } = useGeolocation();
+
+  useEffect(() => {
+    setAppTitle("Geolocation");
+  }, [setAppTitle]);
 
   function handleClick() {
     setCountClicks((count) => count + 1);
