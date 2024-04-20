@@ -7,6 +7,7 @@ import TipCalculator from "./02b-exercise-tip-calculator/TipCalculator";
 import EatSplit from "./02c-eat-n-split/EatSplit";
 import UsePopcorn from "./03-usepopcorn/components/UsePopcorn";
 import CurrencyConverter from "./03a-currency-converter/CurrencyConverter";
+import Geolocation from "./03b-geolocation/Geolocation";
 
 function App() {
   const [appTitle, setAppTitle] = useState("My React Workshop");
@@ -24,8 +25,9 @@ function App() {
       {/* <Accordion /> */}
       {/* <TipCalculator /> */}
       {/* <EatSplit setAppTitle={setAppTitle} /> */}
-      <UsePopcorn setAppTitle={setAppTitle} />
+      {/* <UsePopcorn setAppTitle={setAppTitle} /> */}
       {/* <CurrencyConverter setAppTitle={setAppTitle} /> */}
+      <Geolocation setAppTitle={setAppTitle} />
     </div>
   );
 }
