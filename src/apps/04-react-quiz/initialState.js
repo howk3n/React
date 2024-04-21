@@ -2,7 +2,7 @@ import { QUIZ_STATUS } from "./constants";
 
 export const initialState = {
   questions: [],
-  currentQuestionIndex: 13,
+  currentQuestionIndex: 0,
   // loading, error, ready, active, finished
   status: QUIZ_STATUS.LOADING,
   answer: null,
