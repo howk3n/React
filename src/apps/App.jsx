@@ -8,6 +8,7 @@ import EatSplit from "./02c-eat-n-split/EatSplit";
 import UsePopcorn from "./03-usepopcorn/components/UsePopcorn";
 import CurrencyConverter from "./03a-currency-converter/CurrencyConverter";
 import Geolocation from "./03b-geolocation/Geolocation";
+import ReactQuiz from "./04-react-quiz/components/ReactQuiz";
 
 function App() {
   const [appTitle, setAppTitle] = useState("My React Workshop");
@@ -27,7 +28,8 @@ function App() {
       {/* <EatSplit setAppTitle={setAppTitle} /> */}
       {/* <UsePopcorn setAppTitle={setAppTitle} /> */}
       {/* <CurrencyConverter setAppTitle={setAppTitle} /> */}
-      <Geolocation setAppTitle={setAppTitle} />
+      {/* <Geolocation setAppTitle={setAppTitle} /> */}
+      <ReactQuiz setAppTitle={setAppTitle} />
     </div>
   );
 }
