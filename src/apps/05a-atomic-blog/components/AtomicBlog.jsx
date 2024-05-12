@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "../atomicblog.css";
 import Header from "./Header";
@@ -10,6 +10,10 @@ import { createRandomPost } from "../helper";
 AtomicBlog.propTypes = {
   setAppTitle: PropTypes.func,
 };
+
+// 1. Create a context
+export const PostContext = createContext();
+export const SearchContext = createContext();
 
 function AtomicBlog({ setAppTitle }) {
   const [posts, setPosts] = useState(() =>
@@ -48,24 +52,36 @@ function AtomicBlog({ setAppTitle }) {
   );
 
   return (
-    <section>
-      <button
-        onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
-        className="btn-fake-dark-mode"
-      >
-        {isFakeDark ? "☀️" : "🌙"}
-      </button>
-
-      <Header
-        posts={searchedPosts}
-        onClearPosts={handleClearPosts}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-      />
-      <Main posts={searchedPosts} onAddPost={handleAddPost} />
-      <Archive onAddPost={handleAddPost} />
-      <Footer />
-    </section>
+    // 2. Provide value to child components
+    <PostContext.Provider
+      value={{
+        posts: searchedPosts,
+        onAddPost: handleAddPost,
+        onClearPosts: handleClearPosts,
+      }}
+    >
+      <div className="atomic-blog-container">
+        <section>
+          <button
+            onClick={() => setIsFakeDark((isFakeDark) => !isFakeDark)}
+            className="btn-fake-dark-mode"
+          >
+            {isFakeDark ? "☀️" : "🌙"}
+          </button>
+          <SearchContext.Provider
+            value={{
+              searchQuery,
+              setSearchQuery,
+            }}
+          >
+            <Header />
+          </SearchContext.Provider>
+          <Main />
+          <Archive />
+          <Footer />
+        </section>
+      </div>
+    </PostContext.Provider>
   );
 }
 

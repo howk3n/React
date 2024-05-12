@@ -1,14 +1,9 @@
-import PropTypes from "prop-types";
 import List from "./List";
 
-Posts.propTypes = {
-  posts: PropTypes.array,
-};
-
-function Posts({ posts }) {
+function Posts() {
   return (
     <section>
-      <List posts={posts} />
+      <List />
     </section>
   );
 }

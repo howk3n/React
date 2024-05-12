@@ -1,11 +1,8 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
+import { SearchContext } from "./AtomicBlog";
 
-SearchPosts.propTypes = {
-  searchQuery: PropTypes.string,
-  setSearchQuery: PropTypes.func,
-};
-
-function SearchPosts({ searchQuery, setSearchQuery }) {
+function SearchPosts() {
+  const { searchQuery, setSearchQuery } = useContext(SearchContext);
   return (
     <input
       value={searchQuery}

@@ -1,10 +1,8 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
+import { PostContext } from "./AtomicBlog";
 
-Results.propTypes = {
-  posts: PropTypes.array,
-};
-
-function Results({ posts }) {
+function Results() {
+  const { posts } = useContext(PostContext);
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 

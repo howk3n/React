@@ -1,11 +1,8 @@
-import { useState } from "react";
-import PropTypes from "prop-types";
+import { useContext, useState } from "react";
+import { PostContext } from "./AtomicBlog";
 
-FormAddPost.propTypes = {
-  onAddPost: PropTypes.func,
-};
-
-function FormAddPost({ onAddPost }) {
+function FormAddPost() {
+  const { onAddPost } = useContext(PostContext);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
