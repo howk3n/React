@@ -12,6 +12,7 @@ import Geolocation from "./03b-geolocation/Geolocation";
 import ReactQuiz from "./04-react-quiz/components/ReactQuiz";
 import BankAccount from "./04a-bank-account/BankAccount";
 import Worldwise from "./05-worldwise/components/Worldwise";
+import AtomicBlog from "./05a-atomic-blog/components/AtomicBlog";
 
 function App() {
   const [appTitle, setAppTitle] = useState("My React Workshop");
@@ -34,7 +35,8 @@ function App() {
       {/* <Geolocation setAppTitle={setAppTitle} /> */}
       {/* <ReactQuiz setAppTitle={setAppTitle} /> */}
       {/* <BankAccount setAppTitle={setAppTitle} /> */}
-      <Worldwise setAppTitle={setAppTitle} />
+      {/* <Worldwise setAppTitle={setAppTitle} /> */}
+      <AtomicBlog setAppTitle={setAppTitle} />
     </div>
   );
 }
