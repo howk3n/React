@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import PizzaMenu from "./00-pizza/PizzaMenu";
 import Steps from "./01-steps/Steps";
@@ -10,6 +11,7 @@ import CurrencyConverter from "./03a-currency-converter/CurrencyConverter";
 import Geolocation from "./03b-geolocation/Geolocation";
 import ReactQuiz from "./04-react-quiz/components/ReactQuiz";
 import BankAccount from "./04a-bank-account/BankAccount";
+import Worldwise from "./05-worldwise/components/Worldwise";
 
 function App() {
   const [appTitle, setAppTitle] = useState("My React Workshop");
@@ -31,7 +33,8 @@ function App() {
       {/* <CurrencyConverter setAppTitle={setAppTitle} /> */}
       {/* <Geolocation setAppTitle={setAppTitle} /> */}
       {/* <ReactQuiz setAppTitle={setAppTitle} /> */}
-      <BankAccount setAppTitle={setAppTitle} />
+      {/* <BankAccount setAppTitle={setAppTitle} /> */}
+      <Worldwise setAppTitle={setAppTitle} />
     </div>
   );
 }
