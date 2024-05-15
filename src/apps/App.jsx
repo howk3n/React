@@ -35,8 +35,8 @@ function App() {
       {/* <Geolocation setAppTitle={setAppTitle} /> */}
       {/* <ReactQuiz setAppTitle={setAppTitle} /> */}
       {/* <BankAccount setAppTitle={setAppTitle} /> */}
-      {/* <Worldwise setAppTitle={setAppTitle} /> */}
-      <AtomicBlog setAppTitle={setAppTitle} />
+      <Worldwise setAppTitle={setAppTitle} />
+      {/* <AtomicBlog setAppTitle={setAppTitle} /> */}
     </div>
   );
 }
