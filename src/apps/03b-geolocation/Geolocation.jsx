@@ -1,12 +1,9 @@
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useGeolocation } from "../../globalHooks/useGeolocation";
+import { useTitle } from "../../globalContexts/TitleContext";
 
-Geolocation.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-export default function Geolocation({ setAppTitle }) {
+export default function Geolocation() {
+  const { setAppTitle } = useTitle();
   const [countClicks, setCountClicks] = useState(0);
   const {
     isLoading,

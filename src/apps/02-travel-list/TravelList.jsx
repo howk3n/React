@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import "./travel-list.css";
 import Header from "./components/Header";
@@ -8,12 +7,10 @@ import Stats from "./components/Stats";
 import { COMPONENT_TYPES } from "./constants";
 import InitialSetupForm from "./components/InitialSetupForm";
 import { getInitialItems } from "./travelListHelper";
+import { useTitle } from "../../globalContexts/TitleContext";
 
-TravelList.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-function TravelList({ setAppTitle }) {
+function TravelList() {
+  const { setAppTitle } = useTitle();
   const [items, setItems] = useState([]);
 
   const numItems = items.length;

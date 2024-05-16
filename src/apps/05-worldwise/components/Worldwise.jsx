@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import {
@@ -17,12 +16,10 @@ import Form from "./Form";
 import { CitiesProvider } from "../contexts/CitiesContext";
 import { AuthProvider } from "../contexts/FakeAuthContext";
 import ProtectedRoute from "../pages/ProtectedRoute";
+import { useTitle } from "../../../globalContexts/TitleContext";
 
-Worldwise.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-function Worldwise({ setAppTitle }) {
+function Worldwise() {
+  const { setAppTitle } = useTitle();
   useEffect(() => {
     setAppTitle("Worldwise");
   }, [setAppTitle]);

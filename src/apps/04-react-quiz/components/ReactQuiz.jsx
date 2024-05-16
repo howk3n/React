@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useEffect, useReducer } from "react";
 import Header from "./Header";
 import Loader from "./Loader";
@@ -16,12 +15,10 @@ import { initialState } from "../initialState";
 import FinishScreen from "./FinishScreen";
 import Footer from "./Footer";
 import Timer from "./Timer";
+import { useTitle } from "../../../globalContexts/TitleContext";
 
-ReactQuiz.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-function ReactQuiz({ setAppTitle }) {
+function ReactQuiz() {
+  const { setAppTitle } = useTitle();
   const [
     { status, questions, currentQuestionIndex, answer, points, highscore },
     dispatch,

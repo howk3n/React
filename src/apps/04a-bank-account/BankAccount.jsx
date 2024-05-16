@@ -1,14 +1,11 @@
-import PropTypes from "prop-types";
 import { useEffect, useReducer } from "react";
 import reducer from "./reducer";
 import { initialState } from "./initialState";
 import { ACTIONS } from "./actions";
+import { useTitle } from "../../globalContexts/TitleContext";
 
-BankAccount.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-export default function BankAccount({ setAppTitle }) {
+export default function BankAccount() {
+  const { setAppTitle } = useTitle();
   const [
     { balance, loan, isActive, withdrawAmount, depositAmount, loanAmount },
     dispatch,

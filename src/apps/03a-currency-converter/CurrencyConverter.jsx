@@ -1,12 +1,9 @@
 // `https://api.frankfurter.app/latest?amount=100&from=EUR&to=USD`
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useTitle } from "../../globalContexts/TitleContext";
 
-CurrencyConverter.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-export default function CurrencyConverter({ setAppTitle }) {
+export default function CurrencyConverter() {
+  const { setAppTitle } = useTitle();
   const [currencies, setCurrencies] = useState(null);
   const [value, setValue] = useState(0);
   const [error, setError] = useState("");

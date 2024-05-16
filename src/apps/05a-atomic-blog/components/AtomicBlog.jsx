@@ -1,17 +1,14 @@
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import "../atomicblog.css";
 import Header from "./Header";
 import Main from "./Main";
 import Archive from "./Archive";
 import Footer from "./Footer";
 import { PostProvider } from "./PostProvider";
+import { useTitle } from "../../../globalContexts/TitleContext";
 
-AtomicBlog.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-function AtomicBlog({ setAppTitle }) {
+function AtomicBlog() {
+  const { setAppTitle } = useTitle();
   const [isFakeDark, setIsFakeDark] = useState(false);
   useEffect(() => {
     setAppTitle("Atomic Blog");

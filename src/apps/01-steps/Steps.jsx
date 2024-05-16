@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import "./steps.css";
 import ControlVisible from "./components/ControlVisible";
@@ -6,12 +5,10 @@ import StepBadge from "./components/StepBadge";
 import Buttons from "./components/Buttons";
 import Message from "./components/Message";
 import { messages } from "./stepsData";
+import { useTitle } from "../../globalContexts/TitleContext";
 
-Steps.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-function Steps({ setAppTitle }) {
+function Steps() {
+  const { setAppTitle } = useTitle();
   const [step, setStep] = useState(0);
   const [isOpen, setIsOpen] = useState(true);
 

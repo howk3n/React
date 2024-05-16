@@ -1,20 +1,17 @@
-import PropTypes from "prop-types";
 import { useEffect, useRef, useState } from "react";
 import { pizzaData } from "./pizzaData";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import "./pizza.css";
+import { useTitle } from "../../globalContexts/TitleContext";
 
 const PAGE_TITLE = "Eriukiyo's Pizza";
 const openHour = 9;
 const closeHour = 23;
 
-PizzaMenu.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-export default function PizzaMenu({ setAppTitle }) {
+export default function PizzaMenu() {
+  const { setAppTitle } = useTitle();
   // console.log("rerender");
   const time = useRef(new Date());
   const [currentTime, setCurrentTime] = useState(time.current);

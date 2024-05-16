@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from "react";
 import PizzaMenu from "./00-pizza/PizzaMenu";
 import Steps from "./01-steps/Steps";
 import TravelList from "./02-travel-list/TravelList";
@@ -17,29 +16,22 @@ import ReactQuizWithContext from "./05b-react-quiz-with-context/components/React
 import { TitleProvider } from "../globalContexts/TitleContext";
 
 function App() {
-  const [appTitle, setAppTitle] = useState("My React Workshop");
-  useEffect(
-    function () {
-      document.title = appTitle;
-    },
-    [appTitle]
-  );
   return (
     <div className="main">
       <TitleProvider>
-        {/* <PizzaMenu setAppTitle={setAppTitle} /> */}
-        {/* <Steps setAppTitle={setAppTitle} /> */}
-        {/* <TravelList setAppTitle={setAppTitle} /> */}
+        {/* <PizzaMenu /> */}
+        {/* <Steps /> */}
+        {/* <TravelList /> */}
         {/* <Accordion /> */}
         {/* <TipCalculator /> */}
-        {/* <EatSplit setAppTitle={setAppTitle} /> */}
-        {/* <UsePopcorn setAppTitle={setAppTitle} /> */}
-        {/* <CurrencyConverter setAppTitle={setAppTitle} /> */}
-        {/* <Geolocation setAppTitle={setAppTitle} /> */}
-        {/* <ReactQuiz setAppTitle={setAppTitle} /> */}
-        {/* <BankAccount setAppTitle={setAppTitle} /> */}
-        {/* <Worldwise setAppTitle={setAppTitle} /> */}
-        {/* <AtomicBlog setAppTitle={setAppTitle} /> */}
+        {/* <EatSplit /> */}
+        {/* <UsePopcorn /> */}
+        {/* <CurrencyConverter /> */}
+        {/* <Geolocation /> */}
+        {/* <ReactQuiz /> */}
+        {/* <BankAccount /> */}
+        {/* <Worldwise /> */}
+        {/* <AtomicBlog /> */}
         <ReactQuizWithContext />
       </TitleProvider>
     </div>

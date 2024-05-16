@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import "../use-popcorn.css";
 import CollapsibleBox from "./CollapsibleBox";
@@ -12,12 +11,10 @@ import MovieDetails from "./MovieDetails";
 import { useMovies } from "../hooks/useMovies";
 import { useLocalStorageState } from "../../../globalHooks/useLocalStorageState";
 import { useKeyEvent } from "../../../globalHooks/useKeyEvent";
+import { useTitle } from "../../../globalContexts/TitleContext";
 
-UsePopcorn.propTypes = {
-  setAppTitle: PropTypes.func,
-};
-
-export default function UsePopcorn({ setAppTitle }) {
+export default function UsePopcorn() {
+  const { setAppTitle } = useTitle();
   const [query, setQuery] = useState("");
   const { movies, isLoading, error } = useMovies(query);
   const [watched, setWatched] = useLocalStorageState([], "watched");

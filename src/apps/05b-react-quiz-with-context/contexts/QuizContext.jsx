@@ -13,11 +13,11 @@ QuizProvider.propTypes = {
 };
 
 function QuizProvider({ children }) {
+  const { setAppTitle } = useTitle();
   const [
     { status, questions, currentQuestionIndex, answer, points, highscore },
     dispatch,
   ] = useReducer(reducer, initialState);
-  const { setAppTitle } = useTitle();
   const numQuestions = questions.length;
   const maxPoints = numQuestions
     ? questions.reduce((acc, { points: currPoints }) => acc + currPoints, 0)
