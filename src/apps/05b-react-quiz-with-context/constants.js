@@ -1,0 +1,9 @@
+export const QUIZ_STATUS = {
+  LOADING: "LOADING",
+  ERROR: "ERROR",
+  READY: "READY",
+  ACTIVE: "ACTIVE",
+  FINISHED: "FINISHED",
+};
+
+export const SECONDS_PER_QUESTION = 20;

@@ -13,6 +13,8 @@ import ReactQuiz from "./04-react-quiz/components/ReactQuiz";
 import BankAccount from "./04a-bank-account/BankAccount";
 import Worldwise from "./05-worldwise/components/Worldwise";
 import AtomicBlog from "./05a-atomic-blog/components/AtomicBlog";
+import ReactQuizWithContext from "./05b-react-quiz-with-context/components/ReactQuizWithContext";
+import { TitleProvider } from "../globalContexts/TitleContext";
 
 function App() {
   const [appTitle, setAppTitle] = useState("My React Workshop");
@@ -24,19 +26,22 @@ function App() {
   );
   return (
     <div className="main">
-      {/* <PizzaMenu setAppTitle={setAppTitle} /> */}
-      {/* <Steps setAppTitle={setAppTitle} /> */}
-      {/* <TravelList setAppTitle={setAppTitle} /> */}
-      {/* <Accordion /> */}
-      {/* <TipCalculator /> */}
-      {/* <EatSplit setAppTitle={setAppTitle} /> */}
-      {/* <UsePopcorn setAppTitle={setAppTitle} /> */}
-      {/* <CurrencyConverter setAppTitle={setAppTitle} /> */}
-      {/* <Geolocation setAppTitle={setAppTitle} /> */}
-      {/* <ReactQuiz setAppTitle={setAppTitle} /> */}
-      {/* <BankAccount setAppTitle={setAppTitle} /> */}
-      <Worldwise setAppTitle={setAppTitle} />
-      {/* <AtomicBlog setAppTitle={setAppTitle} /> */}
+      <TitleProvider>
+        {/* <PizzaMenu setAppTitle={setAppTitle} /> */}
+        {/* <Steps setAppTitle={setAppTitle} /> */}
+        {/* <TravelList setAppTitle={setAppTitle} /> */}
+        {/* <Accordion /> */}
+        {/* <TipCalculator /> */}
+        {/* <EatSplit setAppTitle={setAppTitle} /> */}
+        {/* <UsePopcorn setAppTitle={setAppTitle} /> */}
+        {/* <CurrencyConverter setAppTitle={setAppTitle} /> */}
+        {/* <Geolocation setAppTitle={setAppTitle} /> */}
+        {/* <ReactQuiz setAppTitle={setAppTitle} /> */}
+        {/* <BankAccount setAppTitle={setAppTitle} /> */}
+        {/* <Worldwise setAppTitle={setAppTitle} /> */}
+        {/* <AtomicBlog setAppTitle={setAppTitle} /> */}
+        <ReactQuizWithContext />
+      </TitleProvider>
     </div>
   );
 }
