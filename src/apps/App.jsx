@@ -14,6 +14,7 @@ import Worldwise from "./05-worldwise/components/Worldwise";
 import AtomicBlog from "./05a-atomic-blog/components/AtomicBlog";
 import ReactQuizWithContext from "./05b-react-quiz-with-context/components/ReactQuizWithContext";
 import { TitleProvider } from "../globalContexts/TitleContext";
+import AtomicBlogMemo from "./05a-atomic-blog/components/AtomicBlog-memo";
 
 function App() {
   return (
@@ -31,8 +32,9 @@ function App() {
         {/* <ReactQuiz /> */}
         {/* <BankAccount /> */}
         {/* <Worldwise /> */}
-        {/* <AtomicBlog /> */}
-        <ReactQuizWithContext />
+        <AtomicBlog />
+        {/* <AtomicBlogMemo /> */}
+        {/* <ReactQuizWithContext /> */}
       </TitleProvider>
     </div>
   );
