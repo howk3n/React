@@ -1,4 +1,5 @@
 import PageNav from "../components/PageNav";
+import { assetRoot } from "../constants";
 import styles from "./Product.module.css";
 
 export default function Product() {
@@ -7,7 +8,7 @@ export default function Product() {
       <PageNav />
       <section>
         <img
-          src="worldwise/img-1.jpg"
+          src={`${assetRoot}worldwise/img-1.jpg`}
           alt="person with dog overlooking mountain with sunset"
         />
         <div>

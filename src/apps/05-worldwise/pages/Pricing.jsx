@@ -1,5 +1,6 @@
 // Uses the same styles as Product
 import PageNav from "../components/PageNav";
+import { assetRoot } from "../constants";
 import styles from "./Product.module.css";
 
 export default function Pricing() {
@@ -20,7 +21,7 @@ export default function Pricing() {
           </p>
         </div>
         <img
-          src="worldwise/img-2.jpg"
+          src={`${assetRoot}worldwise/img-2.jpg`}
           alt="overview of a large city with skyscrapers"
         />
       </section>
