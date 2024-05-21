@@ -1,0 +1,22 @@
+useEffect notes
+
+useEffect should only be used when no other solution makes sense
+
+If a useEffect requires a function dependency which causes infinite loop try this:
+
+- Define the function inside the useEffect code block (if youu don't need the function anywhere else)
+- Memoize it (useCallback)
+- If the function doesn't reference any reactive values, move it OUT OF THE COMPONENT
+
+If you need to use a object dependency, try:
+
+- Include only the object properties that you need (only primitive values)
+- Memoize the object
+
+If you have too many dependencies in a hook, try useReducer
+
+useEffect shouldn't be used by default for:
+
+- Responding to a user event
+- Fetching data on a component mount (use React Query instead)
+- Synchronizing state changes with one another (setting state based on a different state change). Try using derived state and event handlers instead, since this calls multiple renders.
