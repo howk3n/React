@@ -15,6 +15,7 @@ import AtomicBlog from "./05a-atomic-blog/components/AtomicBlog";
 import ReactQuizWithContext from "./05b-react-quiz-with-context/components/ReactQuizWithContext";
 import { TitleProvider } from "../globalContexts/TitleContext";
 import AtomicBlogMemo from "./05a-atomic-blog/components/AtomicBlog-memo";
+import WorkoutTimer from "./05c-workout-timer/components/WorkoutTimer";
 
 function App() {
   return (
@@ -31,10 +32,11 @@ function App() {
         {/* <Geolocation /> */}
         {/* <ReactQuiz /> */}
         {/* <BankAccount /> */}
-        <Worldwise />
+        {/* <Worldwise /> */}
         {/* <AtomicBlog /> */}
         {/* <AtomicBlogMemo /> */}
         {/* <ReactQuizWithContext /> */}
+        <WorkoutTimer />
       </TitleProvider>
     </div>
   );
