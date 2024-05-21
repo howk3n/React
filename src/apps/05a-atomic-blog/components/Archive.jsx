@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createRandomPost } from "../helper";
-import { usePosts } from "./PostProvider";
+import { usePosts } from "./PostContext";
 
 function Archive() {
   const { onAddPost } = usePosts();

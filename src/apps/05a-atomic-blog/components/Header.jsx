@@ -1,6 +1,6 @@
 import Results from "./Results";
 import SearchPosts from "./SearchPosts";
-import { usePosts } from "./PostProvider";
+import { usePosts } from "./PostContext";
 
 function Header() {
   const { onClearPosts } = usePosts();

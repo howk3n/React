@@ -10,7 +10,7 @@
   background: #fff;
   padding: 32px;
 
-  .fake-dark-mode {
+  &.fake-dark-mode {
     filter: invert(100%);
     transition: all 0.5s;
   }

@@ -1,4 +1,4 @@
-import { usePosts } from "./PostProvider";
+import { usePosts } from "./PostContext";
 
 function SearchPosts() {
   const { searchQuery, setSearchQuery } = usePosts();
