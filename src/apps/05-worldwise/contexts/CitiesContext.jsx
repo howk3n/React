@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 import PropTypes from "prop-types";
 import { BASE_URL } from "../constants";
 import reducer from "../reducer";
@@ -34,20 +40,25 @@ function CitiesProvider({ children }) {
     fetchCities();
   }, []);
 
-  async function getCity(id) {
-    if (id === currentCity.id) return;
-    dispatch({ type: ACTIONS.LOADING });
-    try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      dispatch({ type: ACTIONS.CITY_LOADED, payload: data });
-    } catch (err) {
-      dispatch({
-        type: ACTIONS.REJECTED,
-        payload: "There was an error loading the city (try run npm run cities)",
-      });
-    }
-  }
+  // important to prevent infinite callback loop in City.jsx
+  const getCity = useCallback(
+    async function getCity(id) {
+      if (id === currentCity.id) return;
+      dispatch({ type: ACTIONS.LOADING });
+      try {
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        dispatch({ type: ACTIONS.CITY_LOADED, payload: data });
+      } catch (err) {
+        dispatch({
+          type: ACTIONS.REJECTED,
+          payload:
+            "There was an error loading the city (try run npm run cities)",
+        });
+      }
+    },
+    [currentCity.id]
+  );
 
   async function createCity(newCity) {
     dispatch({ type: ACTIONS.LOADING });

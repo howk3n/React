@@ -31,8 +31,8 @@ function App() {
         {/* <Geolocation /> */}
         {/* <ReactQuiz /> */}
         {/* <BankAccount /> */}
-        {/* <Worldwise /> */}
-        <AtomicBlog />
+        <Worldwise />
+        {/* <AtomicBlog /> */}
         {/* <AtomicBlogMemo /> */}
         {/* <ReactQuizWithContext /> */}
       </TitleProvider>
